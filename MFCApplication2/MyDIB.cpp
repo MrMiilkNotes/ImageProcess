@@ -115,7 +115,7 @@ inline COLORREF DIB1::_color1_(int x, int y) const {
 
 inline COLORREF DIB1::_color4_(int x, int y) const {
 	unsigned char* tmp = m_BMPdata + m_width * x/2 + y/2;
-	int test = y%2?(*tmp >> 4):(*tmp & 0x0f);
+	int test = y%2?(*tmp & 0x0f): (*tmp >> 4);
 	return RGB(Quard[test].rgbRed, Quard[test].rgbGreen, Quard[test].rgbBlue);// Quard[*tmp].rgbGreen, Quard[*tmp].rgbBlue
 }
 
@@ -130,5 +130,5 @@ inline COLORREF DIB1::_color5_(int x, int y) const {
 
 inline COLORREF DIB1::_color3_(int x, int y) const {
 	unsigned char* tmp = m_BMPdata + m_width * x * 3 + y * 3;
-	return RGB(*(tmp + 1), *(tmp), *(tmp + 2));
+	return RGB(*(tmp + 2), *(tmp + 1), *(tmp));
 }
