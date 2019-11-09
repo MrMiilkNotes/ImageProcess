@@ -50,7 +50,7 @@ public:
 	bool Write(const CString& fileName);
 	int width() const { return m_width; }
 	int height() const { return m_height; }
-	unsigned char* data() { return m_BMPdata; }
+	//unsigned char* data() { return m_BMPdata; }
 	color_func _colorAt;
 private:
 	BMPFileHeader m_BMPFileHeader;	
