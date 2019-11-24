@@ -187,6 +187,12 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BMP1.h" />
+    <ClInclude Include="BMP24.h" />
+    <ClInclude Include="BMP4.h" />
+    <ClInclude Include="BMP8.h" />
+    <ClInclude Include="BMPdib.h" />
+    <ClInclude Include="BMPdibWithQuard.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Histogram.h" />
     <ClInclude Include="MainFrm.h" />
@@ -197,8 +203,15 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="tools.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BMP1.cpp" />
+    <ClCompile Include="BMP24.cpp" />
+    <ClCompile Include="BMP4.cpp" />
+    <ClCompile Include="BMP8.cpp" />
+    <ClCompile Include="BMPdib.cpp" />
+    <ClCompile Include="BMPdibWithQuard.cpp" />
     <ClCompile Include="Histogram.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MFCApplication2.cpp" />
@@ -211,6 +224,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="tools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MFCApplication2.rc" />

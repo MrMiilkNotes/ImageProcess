@@ -2,6 +2,12 @@
 // MFCApplication2View.h: CMFCApplication2View 类的接口
 
 #pragma once
+#include<memory>
+#include"MyDIB.h"
+#include"BMP8.h"
+#include"Histogram.h"
+#include"tools.h"
+
 class CMFCApplication2View : public CView
 {
 protected: // 仅从序列化创建
@@ -41,7 +47,7 @@ public:
 	afx_msg void OnFileOpen();
 	afx_msg void OnFileSave();
 	afx_msg void OnFileSaveAs();
-	class DIB1* m_dib;
+	std::shared_ptr<BMPdib> bmp_sptr;
 };
 
 #ifndef _DEBUG  // MFCApplication2View.cpp 中的调试版本

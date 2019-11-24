@@ -45,6 +45,27 @@
     <ClInclude Include="Histogram.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="BMPdib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BMP8.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BMPdibWithQuard.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BMP4.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BMP1.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BMP24.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication2.cpp">
@@ -66,6 +87,27 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Histogram.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BMPdib.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BMP8.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BMPdibWithQuard.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BMP4.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BMP1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BMP24.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

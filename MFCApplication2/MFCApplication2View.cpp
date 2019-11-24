@@ -12,8 +12,6 @@
 
 #include "MFCApplication2Doc.h"
 #include "MFCApplication2View.h"
-#include"MyDIB.h"
-#include"Histogram.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -37,19 +35,11 @@ END_MESSAGE_MAP()
 // CMFCApplication2View 构造/析构
 
 CMFCApplication2View::CMFCApplication2View() noexcept
-	:m_dib(nullptr)
-{
-	// TODO: 在此处添加构造代码
-}
+	:bmp_sptr(nullptr)
+{}
 
 CMFCApplication2View::~CMFCApplication2View()
-{
-	if (m_dib != nullptr) {
-		delete m_dib;
-		m_dib = nullptr;
-	}
-	//if(m_pImage)
-}
+{}
 
 BOOL CMFCApplication2View::PreCreateWindow(CREATESTRUCT& cs)
 {
@@ -70,14 +60,11 @@ void CMFCApplication2View::OnDraw(CDC* pDC)
 
 	// TODO: 在此处为本机数据添加绘制代码
 	//unsigned char grey, r, g, b;
-	if (m_dib) {
-		for (int i = 0; i < m_dib->height(); i++) {
-			for (int j = 0; j < m_dib->width(); j++)
+	if (bmp_sptr) {
+		for (int i = 0; i < bmp_sptr->height(); i++) {
+			for (int j = 0; j < bmp_sptr->width(); j++)
 			{
-				/*g= *(m_dib->data() + m_dib->width() * i * 3 + j * 3);
-				r = *(m_dib->data() + m_dib->width() * i * 3 + j * 3 + 1);
-				b = *(m_dib->data() + m_dib->width() * i * 3 + j * 3 + 2);*/
-				pDC->SetPixelV(10 + j, 10 + i, (m_dib->_colorAt)(i, j));
+				pDC->SetPixelV(10 + j, 10 + i, (bmp_sptr->color_at)(i, j));
 			}
 		}
 	}
@@ -129,29 +116,24 @@ CMFCApplication2Doc* CMFCApplication2View::GetDocument() const // 非调试版�
 
 void CMFCApplication2View::OnFileOpen()
 {
-	if (m_dib) {
-		delete m_dib;
-		m_dib = nullptr;
-	}
 
 	CFileDialog dlg(true, _T("bmp"), _T("*.bmp"));
 
 	if (dlg.DoModal() == IDOK) {
 		CString fileName = dlg.GetPathName();
-		m_dib = new DIB1;
-		m_dib->Read(fileName);
+		// m_dib->Read(fileName);
+		bmp_sptr = create(fileName);
 	}
-	auto hist = histogram(*m_dib);
+	//auto hist = histogram(bmp_sptr);
 	//binarization(*m_dib, 128);
-	equalization(*m_dib, hist);
+	//equalization(bmp_sptr, hist);
 
 	//CString fileName = CString("D:\\Projects\\DigitalImageProcess\\test_pictures\\bmp\\3\\girl.bmp");// 
-	//auto m_dib_2 = new DIB1;
-	//m_dib_2->Read(fileName);
+	//auto bmp_sptr_2 = create(fileName);
 
-	//auto hist_1 = accu_hist(histogram(*m_dib));
-	//auto hist_2 = accu_hist(histogram(*m_dib_2));
-	//normalized(*m_dib, hist_1, hist_2);
+	//auto hist_1 = accu_hist(histogram(bmp_sptr));
+	//auto hist_2 = accu_hist(histogram(bmp_sptr_2));
+	//normalized(bmp_sptr, hist_1, hist_2);
 
 	Invalidate();
 }
@@ -159,12 +141,11 @@ void CMFCApplication2View::OnFileOpen()
 
 void CMFCApplication2View::OnFileSave()
 {
-	if (m_dib == nullptr) return;
 
 	CFileDialog dlg(false);
 	if (dlg.DoModal() == IDOK) {
 		CString fileName = dlg.GetPathName();
-		m_dib->Write(fileName);
+		bmp_sptr->write(fileName);
 	}
 
 	Invalidate();
