@@ -13,6 +13,7 @@
 #include "MFCApplication2Doc.h"
 #include "MFCApplication2View.h"
 #include"MyDIB.h"
+#include"Histogram.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -140,6 +141,17 @@ void CMFCApplication2View::OnFileOpen()
 		m_dib = new DIB1;
 		m_dib->Read(fileName);
 	}
+	auto hist = histogram(*m_dib);
+	//binarization(*m_dib, 128);
+	equalization(*m_dib, hist);
+
+	//CString fileName = CString("D:\\Projects\\DigitalImageProcess\\test_pictures\\bmp\\3\\girl.bmp");// 
+	//auto m_dib_2 = new DIB1;
+	//m_dib_2->Read(fileName);
+
+	//auto hist_1 = accu_hist(histogram(*m_dib));
+	//auto hist_2 = accu_hist(histogram(*m_dib_2));
+	//normalized(*m_dib, hist_1, hist_2);
 
 	Invalidate();
 }

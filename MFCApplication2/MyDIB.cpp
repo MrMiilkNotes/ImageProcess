@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "MyDIB.h"
-#include "pch.h"
 
 
 DIB1::~DIB1() {
@@ -21,7 +20,7 @@ void DIB1::Read(const CString& fileName) {
 	m_height = m_BMPInfoHeader.biHeight;
 	real_size = m_BMPInfoHeader.biSize;
 	//计算图像每行像素所占的字节数（必须是4的倍数）
-	int biBitCount = m_BMPInfoHeader.biBitCount;
+	biBitCount = m_BMPInfoHeader.biBitCount;
 	//int lineByte = (m_width + 3) / 4 * 4;
 	int lineByte = (biBitCount * m_width + 31) / 32 * 4;
 
@@ -34,6 +33,8 @@ void DIB1::Read(const CString& fileName) {
 		//posi = file.Seek(posi + 256 * sizeof(RGBQuad), CFile::begin);
 
 		_colorAt = std::bind(&DIB1::_color1_, this, std::placeholders::_1, std::placeholders::_2);
+		idxAt = std::bind(&DIB1::_idx1_, this, std::placeholders::_1, std::placeholders::_2);
+		drawAt = std::bind(&DIB1::_draw1, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 		//读取图片内容
 		_read_bmp_(file, lineByte);
 	}
@@ -111,6 +112,18 @@ inline COLORREF DIB1::_color1_(int x, int y) const {
 	unsigned char* tmp = m_BMPdata + m_width * x + y;
 	auto test = Quard[*tmp];
 	return RGB(Quard[*tmp].rgbRed, Quard[*tmp].rgbGreen, Quard[*tmp].rgbBlue);// Quard[*tmp].rgbGreen, Quard[*tmp].rgbBlue
+}
+
+int DIB1::_idx1_(int x, int y) const
+{
+	unsigned char* tmp = m_BMPdata + m_width * x + y;
+	return *tmp;
+}
+
+void DIB1::_draw1(int x, int y, unsigned char c)
+{
+	unsigned char* tmp = m_BMPdata + m_width * x + y;
+	*tmp = c;
 }
 
 inline COLORREF DIB1::_color4_(int x, int y) const {
