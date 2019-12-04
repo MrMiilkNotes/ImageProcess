@@ -19,3 +19,7 @@ void BMPdib::read_bmp_(CFile& file, int lineBytes)
 		memcpy(img_ptr + idx * lineBytes, tmp_ptr + (height() - 1 - idx) * lineBytes, lineBytes);
 	}
 }
+
+void BMPdib::read_head_info()
+{
+}

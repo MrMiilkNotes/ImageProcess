@@ -35,9 +35,9 @@ void BMPdibWithQuard::read(const CString& filename)
 	// m_height = m_BMPInfoHeader.biHeight;
 	biBitCount = m_BMPInfoHeader.biBitCount;
 	m_channels = 1;
+	int lineBytes = (biBitCount * m_BMPInfoHeader.biWidth + 31) / 32 * 4;
 	int sz = 1 << biBitCount;
 	quard = std::shared_ptr<RGBQuad>(new RGBQuad[sz], [](RGBQuad* p) {delete[] p; });
 	file.Read(quard.get(), sz * sizeof(RGBQuad));
-	int lineBytes = (biBitCount * m_BMPInfoHeader.biWidth + 31) / 32 * 4;
 	read_bmp_(file, lineBytes);
 }

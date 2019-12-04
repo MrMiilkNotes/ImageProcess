@@ -56,6 +56,7 @@ public:
 	size_type height() const { return m_BMPInfoHeader.biHeight; }
 protected:
 	void read_bmp_(CFile& file, int lineBytes);
+	void read_head_info();
 protected:
 	std::shared_ptr<unsigned char> img_sptr;
 	BMPFileHeader m_BMPFileHeader;
